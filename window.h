@@ -18,7 +18,7 @@ class QTextEdit;
 class Window : public QWidget
 {
     Q_OBJECT
-    Q_CLASSINFO("qdbus interface","org.mandriva.Laucher")
+    Q_CLASSINFO("D-Bus Interface","org.mandriva.Launcher")
 
 public:
     Window();
@@ -27,10 +27,11 @@ public:
 protected:
     void closeEvent(QCloseEvent *event);
 
+public slots:
+    Q_SCRIPTABLE void newMsg();
+    Q_SCRIPTABLE void nonewMsg();
 private slots:
     void iconActivated(QSystemTrayIcon::ActivationReason reason);
-    Q_SCRIPTABLE void update();
-    void setInterval();
 
 private:
 	 bool exists();

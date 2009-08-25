@@ -11,3 +11,6 @@ INCLUDEPATH += .
 HEADERS += window.h
 SOURCES += main.cpp window.cpp
 RESOURCES += systray.qrc
+QT += dbus
+PKGCONFIG += dbus-1
+CONFIG += qdbus
