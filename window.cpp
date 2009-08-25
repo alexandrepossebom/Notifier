@@ -10,9 +10,11 @@ Window::Window()
     createTrayIcon();
 	 QDBusConnection dbus = QDBusConnection::sessionBus();
 	 dbus.registerObject("/Interface", this, QDBusConnection::ExportAllSlots);
-	 dbus.registerService("org.mandriva.Launcher");
-	 connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-			 this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+	 dbus.registerService("org.notifier.Launcher");
+	 connect(trayIcon,
+			 SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+			 this, 
+			 SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 	 trayIcon->setIcon(QIcon(":/images/nonew.gif"));
     trayIcon->show();
     setWindowTitle(tr("Systray"));

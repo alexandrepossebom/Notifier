@@ -18,7 +18,7 @@ class QTextEdit;
 class Window : public QWidget
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface","org.mandriva.Launcher")
+    Q_CLASSINFO("D-Bus Interface","org.notifier.Launcher")
 
 public:
     Window();
