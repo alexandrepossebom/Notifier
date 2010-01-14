@@ -1,2 +1,10 @@
+Run notifier, copy weechat_plugin/notifier.py to ~/.weechat/python/autoload
+
+Open weechat and Enjoy !!
+
+For test run in console :
 /usr/lib/qt4/bin/qdbus org.notifier.Launcher /Interface org.notifier.Launcher.nonewMsg
 /usr/lib/qt4/bin/qdbus org.notifier.Launcher /Interface org.notifier.Launcher.newMsg
+
+--
+Alexandre Possebom
