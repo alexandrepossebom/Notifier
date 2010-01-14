@@ -1,0 +1,2 @@
+/usr/lib/qt4/bin/qdbus org.notifier.Launcher /Interface org.notifier.Launcher.nonewMsg
+/usr/lib/qt4/bin/qdbus org.notifier.Launcher /Interface org.notifier.Launcher.newMsg
