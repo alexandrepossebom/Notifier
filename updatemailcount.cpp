@@ -1,21 +1,30 @@
 #include "updatemailcount.h"
 #include <QDebug>
+#include <QDirIterator>
+#include <QDir>
 
 UpdateMailCount::UpdateMailCount()
 {
-    QThread::start();
+    QDir dir;
+    QDirIterator it("/home/alexandre/Mail/",QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks, QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+        QString dirName = it.next();
+        if (!dirName.contains("/new")) continue;
+        addPath(dirName);
+        for (int i = 0; i < mailChecker.ignoreList.size(); ++i)
+        {
+            if (dirName.contains(mailChecker.ignoreList.at(i)))
+            {
+                removePath(dirName);
+                break;
+            }
+        }
+    }
+    connect(this, SIGNAL(directoryChanged(QString)), this, SLOT(slotCount()));
+    slotCount();
 }
 
-void UpdateMailCount::run()
+void UpdateMailCount::slotCount()
 {
-    MailChecker mailChecker;
-    int count = 0;
-    int oldcount = 0;
-    while (true) {
-        count = mailChecker.getNewMailCount();
-        if (count != oldcount)
-            emit valueMailChanged( count );
-        oldcount = count;
-        sleep( 10 );
-    }
+    emit valueMailChanged( mailChecker.getNewMailCount() );
 }

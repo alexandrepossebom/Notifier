@@ -1,10 +1,10 @@
 #ifndef UPDATEMAILCOUNT_H
 #define UPDATEMAILCOUNT_H
 
-#include <QThread>
+#include <QFileSystemWatcher>
 #include "mailchecker.h"
 
-class UpdateMailCount : public QThread
+class UpdateMailCount : public QFileSystemWatcher
 {
     Q_OBJECT
 public:
@@ -13,7 +13,10 @@ public:
 signals:
      void valueMailChanged(int);
 
-protected:
-    void run();
+public slots:
+    void slotCount();
+
+private:
+    MailChecker mailChecker;
 };
 #endif // UPDATEMAILCOUNT_H

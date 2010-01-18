@@ -10,10 +10,10 @@ class MailChecker : public QObject
 public:
     explicit MailChecker(QObject *parent = 0);
     int getNewMailCount();
+    QStringList ignoreList;
 
 private:
     bool ignore;
-    QStringList ignoreList;
     int count;
 
 };
